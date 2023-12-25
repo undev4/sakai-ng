@@ -16,13 +16,13 @@
         display: flex;
         align-items: center;
         color: var(--surface-900);
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         font-weight: 500;
-        width: 300px;
+        width: 160px;
         border-radius: 12px;
 
         img {
-            height: 2.5rem;
+            height: 2rem;
             margin-right: .5rem;
         }
 
@@ -63,7 +63,7 @@
     }
 
     .layout-menu-button {
-        margin-left: 2rem;
+        margin-left: 1rem;
     }
 
     .layout-topbar-menu-button {
@@ -85,6 +85,7 @@
         }
     }
 }
+        /* Only one button exists now
 
 @media (max-width: 991px) {
     .layout-topbar {
@@ -105,7 +106,6 @@
             margin-left: 0;
             order: 3;
         }
-
         .layout-topbar-menu {
             margin-left: 0;
             position: absolute;
@@ -147,3 +147,4 @@
         }
     }
 }
+*/
