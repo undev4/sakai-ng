@@ -12,3 +12,7 @@ $gutter: 1rem; //for primeflex grid system
 @import "assets/core/styles/flags/flags.css";
 @import "assets/core/styles/badges.scss";
 @import "assets/core/styles/code.scss";
+
+.sc-pointer{
+    cursor: pointer;
+}

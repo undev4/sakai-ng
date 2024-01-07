@@ -1,0 +1,59 @@
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex flex-column align-items-center justify-content-center">
+        <div style="border-radius:56px; padding:0.3rem; border: 1px solid var(--primary-color);">
+            <div class="surface-card py-6 px-5 sm:px-8" style="border-radius:53px; width:40rem">
+                <app-logo divClass="mb-5" size="large"></app-logo>
+                <p class="text-muted mb-4"><span>Create a new site only if you plan to administer your company's scheduling. If you are an employee or manager,&nbsp;</span>
+                    <a  routerLink="/general/login" routerLinkActive="router-link-active" class="cursor-pointer text-sec"><b>go to the login page</b></a>
+                    <span>&nbsp;and ask your site administrator for the login information.</span></p>
+                <form [formGroup]="trialForm" (ngSubmit)="submit()">
+                    <div>
+                        <label for="email" class="block text-900 text-xl font-medium mb-2">Email</label>
+                        <input id="email" autocomplete="email" type="text"    formControlName="email" autocomplete="email"
+                                placeholder="Email" name="email" pInputText class="w-full text-xl md:w-30rem mb-1" style="padding:1rem">
+                        <div class="p-error text-sm mb-5 ">{{emailError}}</div>
+
+                        <div class="flex align-items-center justify-content-between mb-1 gap-5">
+                            <div class="flex align-items-center">
+                                <p-checkbox inputId="agree" [binary]="true" formControlName="agreeToTermsAndConditions" styleClass="mr-2" name="agree"></p-checkbox>
+                                <label class="cursor-pointer text-info " (click)="agreeClicked()" for="rememberme">I Agree to the terms and conditions</label>
+                            </div>
+                        </div>
+                        <div class="p-error text-sm mb-5 ">{{agreeError}}</div>
+
+
+
+
+                        <div class="flex flex-row justify-content-center bg-white overflow-hidden br-3">
+                            <re-captcha class="w-full" formControlName="captcha" siteKey="6LdWHx4jAAAAAEf_pUuxv791SQ_k10S07ZO9eIK-"></re-captcha>
+                        </div>
+                        <div class="p-error text-sm mb-5 ">{{recaptchaError}}</div>
+
+                        <p-button type="submit" pRipple label="Create Site" [style]="{width:'100%'}" class="w-full text-xl " [outlined]="true" ></p-button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-error-dialog [error]="error" errHeader="Signup Error" ></app-error-dialog>
+
+
+<p-dialog [(visible)]="agreeModalVisible" [closable]="false" [modal]="true" [breakpoints]="{ '960px': '65vw' }" 
+        [style]="{ width: '40vw' }"  header="Terms and Conditions">
+
+        @for (item of termsText; track $index) {
+            <p>{{item}}</p>
+        }
+        <ng-template pTemplate="footer">
+            <div class="p-3">
+                <p-button [outlined]="true" severity="secondary" label="Cancel" (click)="termsCanceled()"></p-button>
+                <p-button label="Agree" (click)="termsAgreed()" ></p-button>
+            </div>
+        </ng-template>
+
+</p-dialog>
+
+
+

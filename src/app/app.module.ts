@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppLayoutModule } from './layout/app.layout.module';
@@ -11,6 +11,11 @@ import { EventService } from './core/service/event.service';
 import { IconService } from './core/service/icon.service';
 import { NodeService } from './core/service/node.service';
 import { PhotoService } from './core/service/photo.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PasswordModule } from 'primeng/password';
+import { CheckboxModule } from 'primeng/checkbox';
+import { LogoComponent } from './core/small/logo/logo.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
     declarations: [
@@ -18,10 +23,17 @@ import { PhotoService } from './core/service/photo.service';
     ],
     imports: [
         AppRoutingModule,
-        AppLayoutModule
+        AppLayoutModule,
+        FormsModule,
+        ReactiveFormsModule,
+        PasswordModule,
+        CheckboxModule,
+        LogoComponent,
+        FontAwesomeModule
+
     ],
     providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        { provide: LocationStrategy, useClass: PathLocationStrategy  },
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService
     ],

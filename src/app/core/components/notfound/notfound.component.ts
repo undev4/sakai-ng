@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LayoutService } from 'src/app/layout/service/app.layout.service';
+import { LogoComponent } from '../../small/logo/logo.component';
 
 @Component({
     selector: 'app-notfound',

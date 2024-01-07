@@ -17,11 +17,11 @@ import { AppFooterComponent } from './app.footer.component';
 import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
+import { ErrorDialogComponent } from '../core/small/error-dialog/error-dialog.component';
 
 @NgModule({
     declarations: [
         AppMenuitemComponent,
-        AppTopBarComponent,
         AppFooterComponent,
         AppMenuComponent,
         AppSidebarComponent,
@@ -39,7 +39,8 @@ import { AppLayoutComponent } from "./app.layout.component";
         InputSwitchModule,
         RippleModule,
         RouterModule,
-        AppConfigModule
+        AppConfigModule,
+        ErrorDialogComponent
     ],
     exports: [AppLayoutComponent]
 })

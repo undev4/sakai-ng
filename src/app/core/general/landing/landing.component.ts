@@ -9,5 +9,13 @@ import { LayoutService } from 'src/app/layout/service/app.layout.service';
 export class LandingComponent {
 
     constructor(public layoutService: LayoutService, public router: Router) { }
+
+    loginClicked() {
+        this.router.navigate(['/general/login'])
+
+    }
+    createSiteClicked() {
+        this.router.navigate(['/general/trial'])
+    }
     
 }

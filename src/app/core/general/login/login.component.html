@@ -1,0 +1,46 @@
+<div class="surface-ground flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+    <div class="flex flex-column align-items-center justify-content-center">
+        <div style="border-radius:56px; padding:0.3rem; border: 1px solid var(--primary-color);" class="border-primary">
+            <div class="w-full surface-card py-6 px-5 sm:px-8" style="border-radius:53px">
+                <app-logo divClass="mb-7" size="large"></app-logo>
+                <form [formGroup]="loginForm" (ngSubmit)="submit()">
+                    <div>
+                        <label for="email" class="block text-900 text-xl font-medium mb-2">Email</label>
+                        <input id="email" autocomplete="email" type="text"    formControlName="email" autocomplete="email"
+                                placeholder="Email" name="email" pInputText class="w-full md:w-30rem mb-1" style="padding:1rem">
+                        <div class="p-error text-sm mb-5 ">{{feedback ? emailError :'' }}</div>
+
+
+                        <label for="password" class="block text-900 font-medium text-xl mb-2">Password</label>
+                        <p-password inputId="password" name="password" formControlName="password" placeholder="Password" [feedback]="false" [toggleMask]="true" 
+                                styleClass="mb-1" inputStyleClass="w-full p-3 md:w-30rem p-inputtext-lg" autocomplete="current-password"></p-password>
+                        <div class="p-error text-sm mb-5 ">{{feedback ? passwordError :'' }}</div>
+                       
+                        <div class="flex align-items-center justify-content-between mb-5 gap-5">
+                            <div class="flex align-items-center">
+                                <p-checkbox inputId="rememberme" [binary]="true" formControlName="rememberMe" styleClass="mr-2" name="rememberMe"></p-checkbox>
+                                <label for="rememberme">Remember Me</label>
+                            </div>
+                            <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)">Forgot password?</a>
+                        </div>
+                        <button type="submit" pButton pRipple label="Sign In" class="w-full p-3 text-xl"  ></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-error-dialog [error]="error" errHeader="Login Error" ></app-error-dialog>
+
+<p-dialog [(visible)]="chooseASiteVisible" header="Choose a Site" [closable]="false" [modal]="true"
+            [breakpoints]="{ '960px': '55vw' }" [style]="{ width: '30vw' }" >
+    <div *ngFor="let site of response?.sites">
+        <hr>
+        <div (click)="siteSelected(site)" class="mb-2 cursor-pointer">
+            <h4 class="text-primary">{{site.abbreviation}}</h4>
+            <div>{{site.name}}</div>            
+        </div>
+    </div>
+
+</p-dialog>

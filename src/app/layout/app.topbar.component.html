@@ -1,8 +1,5 @@
 <div class="layout-topbar">
-    <a class="layout-topbar-logo" routerLink="">
-        <img src="assets/layout/images/{{layoutService.config().colorScheme === 'light' ? 'logo_dark_thinner' : 'logo_white_thinner'}}.svg" alt="logo">
-        <span>Schedulai</span>
-    </a>
+    <app-logo></app-logo>
 
     <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
         <i class="pi pi-bars"></i>
@@ -12,7 +9,7 @@
         <i class="pi pi-ellipsis-v"></i>
     </button>
    
-    
+    <ng-content ></ng-content>
 
     <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
        <!--
