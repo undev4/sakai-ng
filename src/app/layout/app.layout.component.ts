@@ -4,6 +4,7 @@ import { filter, Subscription } from 'rxjs';
 import { LayoutService } from "./service/app.layout.service";
 import { AppSidebarComponent } from "./app.sidebar.component";
 import { AppTopBarComponent } from './app.topbar.component';
+import { StoreService } from '../core/service/store.service';
 
 @Component({
     selector: 'app-layout',
@@ -19,14 +20,12 @@ export class AppLayoutComponent implements OnDestroy {
 
     @ViewChild(AppSidebarComponent) appSidebar!: AppSidebarComponent;
 
-    @ViewChild(AppTopBarComponent) appTopbar!: AppTopBarComponent;
-
-    constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router) {
+    constructor(public layoutService: LayoutService, public renderer: Renderer2, public router: Router, public store:StoreService) {
         this.overlayMenuOpenSubscription = this.layoutService.overlayOpen$.subscribe(() => {
             if (!this.menuOutsideClickListener) {
                 this.menuOutsideClickListener = this.renderer.listen('document', 'click', event => {
                     const isOutsideClicked = !(this.appSidebar.el.nativeElement.isSameNode(event.target) || this.appSidebar.el.nativeElement.contains(event.target) 
-                        || this.appTopbar.menuButton.nativeElement.isSameNode(event.target) || this.appTopbar.menuButton.nativeElement.contains(event.target));
+                        || this.appTopBar?.menuButton.nativeElement.isSameNode(event.target) || this.appTopBar?.menuButton.nativeElement.contains(event.target));
                     
                     if (isOutsideClicked) {
                         this.hideMenu();
@@ -36,8 +35,8 @@ export class AppLayoutComponent implements OnDestroy {
 
             if (!this.profileMenuOutsideClickListener) {
                 this.profileMenuOutsideClickListener = this.renderer.listen('document', 'click', event => {
-                    const isOutsideClicked = !(this.appTopbar.menu.nativeElement.isSameNode(event.target) || this.appTopbar.menu.nativeElement.contains(event.target)
-                        || this.appTopbar.topbarMenuButton.nativeElement.isSameNode(event.target) || this.appTopbar.topbarMenuButton.nativeElement.contains(event.target));
+                    const isOutsideClicked = !(this.appTopBar?.menu.nativeElement.isSameNode(event.target) || this.appTopBar?.menu.nativeElement.contains(event.target)
+                        || this.appTopBar?.topbarMenuButton.nativeElement.isSameNode(event.target) || this.appTopBar?.topbarMenuButton.nativeElement.contains(event.target));
 
                     if (isOutsideClicked) {
                         this.hideProfileMenu();
@@ -117,5 +116,9 @@ export class AppLayoutComponent implements OnDestroy {
         if (this.menuOutsideClickListener) {
             this.menuOutsideClickListener();
         }
+       
+    }
+    get appTopBar():AppTopBarComponent | undefined{
+        return this.store.appTopBar
     }
 }

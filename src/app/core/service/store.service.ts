@@ -1,4 +1,5 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
+import { AppTopBarComponent } from 'src/app/layout/app.topbar.component';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class StoreService {
     
     constructor() { }
 
-
+    appTopBar?:AppTopBarComponent
 
 }
 

@@ -1,8 +1,9 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { LayoutService } from "./service/app.layout.service";
 import { CommonModule } from '@angular/common';
 import { LogoComponent } from '../core/small/logo/logo.component';
+import { StoreService } from '../core/service/store.service';
 
 @Component({
     selector: 'app-topbar',
@@ -10,7 +11,7 @@ import { LogoComponent } from '../core/small/logo/logo.component';
     standalone: true,
     imports:[CommonModule, LogoComponent]
 })
-export class AppTopBarComponent {
+export class AppTopBarComponent implements AfterViewInit, OnDestroy{
     
     items!: MenuItem[];
 
@@ -20,9 +21,15 @@ export class AppTopBarComponent {
 
     @ViewChild('topbarmenu') menu!: ElementRef;
 
-    constructor(public layoutService: LayoutService) { }
+    constructor(public layoutService: LayoutService, public store: StoreService) { }
 
     settingsClicked() {
         this.layoutService.showConfigSidebar()
+    }
+    ngAfterViewInit(): void {
+        this.store.appTopBar = this
+    }
+    ngOnDestroy(): void {
+        this.store.appTopBar=undefined
     }
 }

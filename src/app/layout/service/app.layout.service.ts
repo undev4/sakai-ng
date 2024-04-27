@@ -149,5 +149,5 @@ export class LayoutService {
     changeScale(value: number) {
         document.documentElement.style.fontSize = `${value}px`;
     }
-
+    
 }

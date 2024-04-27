@@ -16,3 +16,47 @@ $gutter: 1rem; //for primeflex grid system
 .sc-pointer{
     cursor: pointer;
 }
+
+
+@media only screen and (max-width: 1199px) {
+    .lxl-hidden {
+      display: none;
+    }
+  }
+  @media only screen and (min-width: 1200px) {
+    .gxl-hidden {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 991px) {
+    .llg-hidden {
+      display: none;
+    }
+  }
+  @media only screen and (min-width: 992px) {
+    .glg-hidden {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 767px) {
+    .lmd-hidden {
+      display: none;
+    }
+  }
+  @media only screen and (min-width: 768px) {
+    .gmd-hidden {
+      display: none;
+    }
+  }
+  @media only screen and (max-width: 575px) {
+    .lsm-hidden {
+      display: none;
+    }
+  }
+  @media only screen and (min-width: 576px) {
+    .gsm-hidden {
+      display: none;
+    }
+  }
